@@ -281,7 +281,7 @@
     <!-- 歡迎畫面 -->
     <div id="welcome-screen" class="container-box fade-in">
         <h1>5-5 熱的傳播方式</h1>
-        <div style="font-size: 4em; text-align: center; margin: 20px;">⚛️🧪</div>
+        <div style="font-size: 4em; text-align: center; margin: 20px;">⚛️🧪🔬🧬</div>
         <p style="text-align: center; font-size: 1.2em;">請輸入代號，準備進行元素分析！</p>
         
         <div style="text-align:center;">
@@ -776,13 +776,10 @@
                 const isFav = isFavorite(q.id);
                 const canDelete = (quizState.mode === 'mistake' || quizState.mode === 'favorite');
                 
-                // FIX for iPad: use hollow heart and solid heart text swap with variation selector to prevent red emoji
-                const favIcon = isFav ? '&#x2665;&#xFE0E;' : '&#x2661;&#xFE0E;';
-                
                 let actionsHtml = `
                     <div class="card-actions">
                          ${canDelete ? `<span class="action-icon trash" onclick="deleteCardItem('${q.id}')">🗑️</span>` : ''}
-                        <span class="action-icon ${isFav ? 'active' : ''}" onclick="toggleWaterfallFav(this, '${q.id}')">${favIcon}</span>
+                        <span class="action-icon ${isFav ? 'active' : ''}" onclick="toggleWaterfallFav(this, '${q.id}')">❤</span>
                     </div>
                 `;
                 
@@ -891,11 +888,9 @@
             if(list.includes(id)) {
                 list = list.filter(x => x !== id);
                 btn.classList.remove('active');
-                btn.innerHTML = '&#x2661;&#xFE0E;'; // Switch to hollow heart
             } else {
                 list.push(id);
                 btn.classList.add('active');
-                btn.innerHTML = '&#x2665;&#xFE0E;'; // Switch to solid heart
             }
             localStorage.setItem(getUserKey('favoriteBank'), JSON.stringify(list));
             updateDashboardTools();
